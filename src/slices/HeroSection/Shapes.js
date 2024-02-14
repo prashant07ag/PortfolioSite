@@ -114,16 +114,8 @@ function Geometry({ r, position, geometry, soundEffects, materials, dogModel }) 
 
     gsap.utils.random(soundEffects).play();
 
-    gsap.to(mesh.rotation, {
-      x: `+=${gsap.utils.random(0, 2)}`,
-      y: `+=${gsap.utils.random(0, 2)}`,
-      z: `+=${gsap.utils.random(0, 2)}`,
-      duration: 1.3,
-      ease: "elastic.out(1,0.3)",
-      yoyo: true,
-    });
 
-    mesh.material = getRandomMaterial();
+    // mesh.material = getRandomMaterial();
   }
 
   const handlePointerOver = () => {
@@ -152,26 +144,27 @@ function Geometry({ r, position, geometry, soundEffects, materials, dogModel }) 
         onComplete: () => {
           // Set rotation to look front after the rotation animation finishes
           gsap.to(meshRef.current.rotation, {
-            y: 0,
-            duration: 0.5,
-            ease: "power2.out",
+            y: Math.PI * 2, // Rotate 360 degrees around the y-axis
+            duration: 30, // Duration of rotation animation
+            repeat: -1, // Repeat indefinitely
+            ease: "none", // Linear easing
           });
         },
       });
     });
     return () => ctx.revert();
   }, []);
-  
-  
+
+
   return (
     <group position={[0, 0, 0]} ref={meshRef}>
       <Float speed={8 * r} rotationIntensity={5 * r} rotationSpeed={0} >
         {dogModel ? (
           <primitive
             object={dogModel.scene}
-            // onClick={handleClick}
+            onClick={handleClick}
             // position={}
-            scale={[1.2, 1.2, 1.2]} 
+            scale={[1.2, 1.2, 1.2]}
             onPointerOver={handlePointerOver}
             onPointerOut={handlePointerOut}
             visible={visible}
