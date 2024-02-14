@@ -33,7 +33,7 @@ export default async function Page({ params }) {
                 <div className="prose prose-lg prose-invert mt-8 w-full max-w-none md:mt-10">
                     <SliceZone slices={page.data.slices} components={components} />
                 </div>
-                <div className="flex md:flex-col gap-10 items-center justify-center">
+                <div className="flex flex-col gap-10 items-center justify-center">
                     <Button
                         linkField={page.data.deployment}
                         label={page.data.deployment_label}
