@@ -17,7 +17,7 @@ export default async function Page({ params }) {
         .catch(() => notFound());
     const formattedDate = formatDate(page.data.date);
     return <Bounded>
-        <div className="rounded-2xl border-2 border-slate-800 bg-slate-900 px-4 py-10 md:px-8 md:py-20">
+        <div className="rounded-2xl border-2 border-slate-800 bg-zinc-900 px-4 py-10 md:px-8 md:py-20">
             <Heading as="h1">{page.data.title}</Heading>
             <div className="flex gap-4 text-yellow-400">
                 {page.tags.map((tag, index) => (
